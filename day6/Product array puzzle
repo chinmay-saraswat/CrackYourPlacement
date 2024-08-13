@@ -1,0 +1,42 @@
+
+class Solution {
+  public:
+    // nums: given vector
+    // return the Product vector P that hold product except self at each index
+    vector<long long int> productExceptSelf(vector<long long int>& nums) {
+
+        // code here
+        long long int product = 1;
+        bool flag = false;
+        int count = 0;
+        for(auto i : nums)
+        {
+            if(i!=0)
+            product*=i;
+            else{
+            flag = true;count++;
+            }
+        }
+        vector<long long int> v;
+        if(count > 1)
+        {
+            vector<long long int> v1(n,0);
+            return v1;
+        }
+        for(auto i : nums)
+        {
+            if(i!=0)
+            {
+                if(flag)
+                v.push_back(0);
+                else
+                v.push_back(product/i);
+            }
+            else if(i==0)
+            {
+                v.push_back(product);
+            }
+        }
+        return v;
+    }
+};
