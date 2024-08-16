@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    Node* divide(Node* head) {
+        // code here
+        Node* odd= new Node(-1);
+        Node* even= new Node(-1);
+        Node*curr1 = even;
+        Node*curr2=odd;
+        Node*curr=head;
+        while(curr!=NULL){
+            if(curr->data%2 == 1){
+                curr2->next=new Node(curr->data);
+                curr2=curr2->next;
+            }else{
+                curr1->next=new Node(curr->data);
+                curr1=curr1->next;
+            }
+            curr=curr->next;
+        }
+        if(odd->next==NULL)return even;
+        if(even->next==NULL)return odd;
+        curr1->next=odd->next;
+        head=even->next;
+        return head;
+    }
+};
