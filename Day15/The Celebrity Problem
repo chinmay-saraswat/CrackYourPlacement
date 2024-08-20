@@ -1,0 +1,29 @@
+class Solution {
+  public:
+    // Function to find if there is a celebrity in the party or not.
+    int celebrity(vector<vector<int> >& mat) {
+        // code here
+        int n = mat.size();
+        int bottom = n-1;
+        int top = 0;
+        while(top<bottom){
+            if(mat[top][bottom]==1){
+                top++;
+            }
+            else{
+                bottom--;
+            }
+        }
+         int candidate = top;
+        
+        for(int k=0;k<n;k++){
+            if(k != candidate){
+                if(mat[candidate][k] == 1 || mat[k][candidate] == 0){
+                    return -1;
+                }
+            }
+        }
+        return candidate;
+        
+    }
+};
