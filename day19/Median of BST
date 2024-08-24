@@ -1,0 +1,28 @@
+void inorder(Node* root,vector<int>&nodes){
+     if (root == nullptr) return;
+    inorder(root->left, nodes);
+    nodes.push_back(root->data);
+    inorder(root->right, nodes);    
+}
+int count(Node* root){
+    if (root==nullptr){
+        return 0;
+    }
+    return 1+count(root->left)+count(root->right);
+}
+float findMedian(struct Node *root)
+{
+      //Code here
+      if(root==nullptr){
+          return 0.0;
+      }
+      vector<int>nodes;
+      inorder(root,nodes);
+      int n = nodes.size();
+      
+      if(n%2==1){
+          return (float)nodes[n/2];
+      }else{
+          return ((float)nodes[n / 2 - 1] + (float)nodes[n / 2]) / 2.0;
+      }
+}
