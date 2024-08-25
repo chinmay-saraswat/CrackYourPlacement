@@ -1,0 +1,31 @@
+class Solution
+{
+    private:
+    void helper(Node* root, vector<Node*> &inorder){
+        if(!root) return;
+        helper(root->left, inorder);
+        inorder.push_back(root);
+        helper(root->right, inorder);
+    }
+    
+    public:
+    void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
+    {   
+        vector<Node*> inorder;
+        helper(root, inorder);
+        int i;
+        for(i=0;i<inorder.size();i++){
+            if(inorder[i]->key == key){
+                if(i>0) pre = inorder[i-1];
+                if(i<inorder.size()-1) suc = inorder[i+1];
+                break;
+            }
+            else if(inorder[i]->key > key){
+                if(i>0) pre = inorder[i-1];
+                suc = inorder[i];
+                break;
+            }
+        }
+        if(!pre && i==inorder.size()) pre = inorder[i-1];
+    }
+};
