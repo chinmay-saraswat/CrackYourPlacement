@@ -1,0 +1,24 @@
+class Solution{
+  public:
+    bool isdead(Node*root,int min,int max){
+        if(root==nullptr){
+            return false;
+        }
+        if(root->left==NULL&&root->right==NULL){
+            if(min==max){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        return isdead(root->left, min, root->data - 1) ||
+           isdead(root->right, root->data + 1, max);
+    }
+    
+    bool isDeadEnd(Node *root)
+    {
+        //Your code here
+        return isdead(root, 1, INT_MAX);
+        
+    }
+};
