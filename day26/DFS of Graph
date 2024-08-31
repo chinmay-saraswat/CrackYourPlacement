@@ -1,0 +1,19 @@
+class Solution {
+  public:
+    // Function to return a list containing the DFS traversal of the graph.
+   void dfs(int node,vector<int>adj[],vector<bool>&vis,vector<int>&result){
+        vis[node]=true;
+        result.push_back(node);
+        for(int nebor:adj[node]){
+            if(!vis[nebor]){
+                dfs(nebor,adj,vis,result);
+            }
+        }
+    }
+    vector<int> dfsOfGraph(int V, vector<int> adj[]) {
+        vector<int>result;
+        vector<bool>vis(V,false);
+        dfs(0,adj,vis,result);
+        return result;
+    }
+};
